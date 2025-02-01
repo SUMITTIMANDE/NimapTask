@@ -1,0 +1,33 @@
+﻿@model NimapTask.Models.Product
+
+@{
+    ViewBag.Title = "Update Product";
+}
+
+<h2 class="text-center mb-4 " style="border-color:yellowgreen">Update Product</h2>
+<div class="container mt-5 d-flex align-items-center" style="align-items:center">
+
+    @using (Html.BeginForm("UpdateProduct", "Product"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            @Html.LabelFor(P => P.ProductId, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(P => P.ProductId, new { @readonly = "true", @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(P => P.ProductName, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(P => P.ProductName, new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(P => P.Category.CategoryName, htmlAttributes: new { @class = "form-label" })
+            @Html.DropDownList("CategoryId", null, new { @class = "form-select" })
+        </div>
+
+        <div class="justify-content-around align-self-xxl-baseline">
+            <input type="submit" value="Update" name="btnUpdate" />
+            <button style="color:black"> @Html.ActionLink("Cancel", "DisplayProducts", new { @class = "btn btn-primary " })</button>
+        </div>
+    }
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<NimapTask.Models.Product>
+@{
+    ViewBag.Title = "Display Products";
+}
+
+<h2 style="text-align:center  ; background-color:paleturquoise;color:black ">Display Products</h2>
+<table align="center" border="1" class="table table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(P => P.ProductId)</th>
+        <th>@Html.DisplayNameFor(P => P.ProductName)</th>
+        <th>@Html.DisplayNameFor(P => P.CategoryId)</th>
+        <th>@Html.DisplayNameFor(P => P.Category.CategoryName)</th>
+        @*<th>@Html.DisplayNameFor(P=>P.Category.Description)</th>*@
+    </tr>
+    @foreach (var Product in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(P => Product.ProductId)</td>
+            <td>@Html.DisplayFor(P => Product.ProductName)</td>
+            <td>@Html.DisplayFor(P => Product.CategoryId)</td>
+            <td>@Html.DisplayFor(P => Product.Category.CategoryName)</td>
+            <td>
+                <button> @Html.ActionLink("View", "DisplayProduct", new { Id = Product.ProductId })</button>
+                <button>  @Html.ActionLink("Edit", "EditProduct", new { Id = Product.ProductId })</button>
+                <button> @Html.ActionLink("Delete", "DeleteProduct", new { Id = Product.ProductId }, new { onclick = "return conform('Are you sure of deleting?')" })</button>
+            </td>
+
+        </tr>
+
+    }
+    <tr>
+        <td colspan="5" align="center">@Html.ActionLink("Add Product", "AddProduct", null, new { @class = "btn btn-primary" })</td>
+    </tr>
+</table>
+
+<div class="pagination justify-content-center">
+  
+    @if (ViewBag.PageNumber > 1)
+    {
+        <a href="@Url.Action("DisplayProducts", new { pageNumber = ViewBag.PageNumber - 1, pageSize = ViewBag.PageSize })" class="page-link">
+            Previous
+        </a>
+    }
+
+
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        if (i >= ViewBag.PageNumber - 5 && i <= ViewBag.PageNumber + 5)  // Show +/- 5 pages around the current page
+        {
+            <a href="@Url.Action("DisplayProducts", new { pageNumber = i, pageSize = ViewBag.PageSize })"
+               class="page-link @(i == ViewBag.PageNumber ? "active" : "")">
+                @i
+            </a>
+        }
+    }
+
+
+    @if (ViewBag.PageNumber < ViewBag.TotalPages)
+    {
+        <a href="@Url.Action("DisplayProducts", new { pageNumber = ViewBag.PageNumber + 1, pageSize = ViewBag.PageSize })" class="page-link">
+            Next
+        </a>
+    }
+</div>
+</div>
+
+

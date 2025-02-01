@@ -1,0 +1,28 @@
+﻿@model NimapTask.Models.Category
+
+@{
+    ViewBag.Title = "Add Category";
+}
+
+<h2 class="text-center" style="background-color: yellowgreen; padding: 10px;">Add New Category</h2>
+
+<div class="container mt-4">
+    @using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(C => C.CategoryName, new { @class = "form-label" })
+            @Html.TextBoxFor(C => C.CategoryName, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group mt-3">
+            <input type="submit" value="Save" name="btnSave" class="btn btn-success" />
+            <input type="reset" value="Reset" name="btnReset" class="btn btn-danger" />
+        </div>
+
+        <div class="mt-3">
+            @Html.ActionLink("Back to Category Details", "DisplayCategories", null, new { @class = "btn btn-primary" })
+        </div>
+
+    }
+</div>

@@ -1,0 +1,36 @@
+﻿@model NimapTask.Models.Category
+
+@{
+    ViewBag.Title = "Edit Category";
+}
+
+<h2 class="text-center">Edit Category</h2>
+
+@using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post))
+{
+    @Html.AntiForgeryToken() 
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                
+                <div class="form-group">
+                    @Html.LabelFor(C => C.CategoryId, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(C => C.CategoryId, new { @class = "form-control", @readonly = "true" })
+                </div>
+
+                
+                <div class="form-group">
+                    @Html.LabelFor(C => C.CategoryName, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(C => C.CategoryName, new { @class = "form-control" })
+                </div>
+
+               
+                <div class="form-group text-center">
+                    <input type="submit" value="Save" class="btn btn-primary" name="btnSave" />
+                    @Html.ActionLink("Cancel", "DisplayCategories", new { @class = "btn btn-secondary" })
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,25 @@
+﻿@model NimapTask.Models.Product
+
+@{
+    ViewBag.Title = "DisplayProduct";
+}
+
+<h2 style="text-align:center ; background-color:yellowgreen">Display Product</h2>
+<table class="table table-striped" >
+    <tr>
+        <td align="center">Product Id : @Model.ProductId</td>
+    </tr>
+    <tr>
+        <td align="center">Product Name :@Model.ProductName</td>
+    </tr>
+    <tr>
+        <td align="center">Category Id : @Model.CategoryId</td>
+    </tr>
+    <tr> 
+        <td align="center">Category Name :@Model.Category.CategoryName</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><button>@Html.ActionLink("Back to Product Details","DisplayProducts")</button></td>
+    </tr>
+</table>
+

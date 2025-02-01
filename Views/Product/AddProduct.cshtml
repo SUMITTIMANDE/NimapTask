@@ -1,0 +1,44 @@
+﻿@model NimapTask.Models.Product
+
+@{
+    ViewBag.Title = "Add Product";
+}
+
+<h2 style="text-align:center ; background-color:greenyellow">Add Product</h2>
+<div class="container mt-5">
+    @using (Html.BeginForm("AddProduct", "Product"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row mb-3">
+            <div class="col-md-3">
+                @Html.LabelFor(P => P.ProductName)
+            </div>
+            <div class="col-md-9">
+                @Html.TextBoxFor(P => P.ProductName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-3">
+                @Html.Label("Category Name")
+            </div>
+            <div class="col-md-9">
+                @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.CategoryList, "-Selected Category-", new { @class = "form-control" })
+
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-9 offset-md-3">
+                <input type="submit" value="Submit" name="btnSubmit" class="btn btn-success" />
+                <input type="reset" value="Reset" class="btn btn-danger" />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-9 offset-md-3">
+                @Html.ActionLink("Back to Product Details", "DisplayProducts", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    }
+</div>
